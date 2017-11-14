@@ -1,3 +1,0 @@
-Buildfile generation error occurred..
-This project was created using a version of compiler that is not currently installed: 16.9.1.LTS [ARM]. See 'Help > Check for Updates' or visit CCS App Center to get the latest compilers. See 'Help > Install New Software...' to install older compilers. Alternatively, migrate the project to one of the available compiler versions by adjusting project properties.
-Build stopped..
