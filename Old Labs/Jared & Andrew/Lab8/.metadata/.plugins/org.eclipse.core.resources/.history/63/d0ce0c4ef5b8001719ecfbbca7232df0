@@ -1,0 +1,19 @@
+#include "button.h"
+#include "servo.h"
+#include "lcd.h"
+
+void main() {
+
+    init_PortB();
+    clock_timer_init();
+    button_init();
+
+    int i;
+
+    move_servo(0);
+
+    for (i = 0; i < 100; i++) {
+        move_servo(-1);
+    }
+}
+

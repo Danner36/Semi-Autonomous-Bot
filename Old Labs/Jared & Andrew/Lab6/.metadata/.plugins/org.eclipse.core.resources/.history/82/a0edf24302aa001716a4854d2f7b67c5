@@ -1,0 +1,30 @@
+#include "timer.h"
+#include "adc.h"
+#include "lcd.h"
+#include "math.h"
+
+
+int getDistance(int result){
+    return (int)exp((24341-(10*result))/6291)+10;
+
+}
+
+void main() {
+    adc_Start();
+    lcd_init();
+
+    while(1){
+
+        int result = 0;
+        result = adc_Read();
+
+        lcd_printf("%d", result);
+        lcd_printf("%d", getDistance(result));
+        timer_waitMillis(200);
+
+
+    }
+
+    adc_Stop();
+}
+

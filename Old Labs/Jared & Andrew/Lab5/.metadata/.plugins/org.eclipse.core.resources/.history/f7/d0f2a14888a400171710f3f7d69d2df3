@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "lcd.h"
+#include "timer.h"
+#include "button.h"
+#include "uart.h"
+
+char buttonPresses(char b);
+
+    char* b6 = "Yes";
+    char* b5 = "No";
+    char* b4 = "Blue, no green, Ahhhhh!!!";
+    char* b3 = "Andrew is great!";
+    char* b2 = "Jared is sorta great I guess";
+    char* b1 = "CPRE 288";
+
+void main() {
+    lcd_init();
+    uart_init();
+    button_init();
+
+    char received[21];
+
+    char lastChar = 'a';
+
+    while(1){
+        int index = 0;
+
+        while(index < 20){
+
+            lastChar = uart_receive();
+
+            //Button Presses
+            if (lastChar == 6) {
+                    int j = 0;
+                    for (j = 0; j < strlen(b6); j++) {
+                        uart_sendChar(b6[j]);
+                    }
+                }
+
+            //Normal char input
+            else {
+                if(lastChar != '\r') {
+                    received[index] = lastChar;
+
+                    index++;
+
+                    lcd_printf("%c, index: %d", lastChar, index);
+                    uart_sendChar(lastChar);
+
+                }
+                else {
+                    break;
+                }
+            }
+        }
+
+        received[index] = '\0';
+
+        lcd_printf(received);
+        uart_sendChar('\r');
+        uart_sendChar('\n');
+    }
+}
+
+char buttonPresses(char b) {
+
+    if (b == 6) {
+        int j = 0;
+        for (j = 0; j < strlen(b6); j++) {
+            uart_sendChar(b6[j]);
+        }
+    }
+    else if (b == 5) {
+
+    }
+
+    //Return 1 if button was pressed; 0 otherwise
+    if (b > 0) return 1;
+    else return 0;
+}
+

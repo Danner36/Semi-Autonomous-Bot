@@ -1,0 +1,32 @@
+/*
+ * wifi.c
+ *
+ *  Created on: Oct 3, 2017
+ *      Author: jdanner
+ */
+
+#include "uart.h"
+
+
+
+void WiFi_start(){
+    commandPin = 1; //Enter command mode
+    uart_sendChar(WIFI_START_COMMAND); //Send command
+    uart_sendStr(WIFI_PSK); //Send WiFi PSK
+    uart_sendChar(0x00); //NULL terminator
+    response = uart_waitForChar(); //Wait for response
+    commandPin = 0; //Leave command mode
+    if(response != 0) {
+        //An error occurred…
+    }
+}
+
+void WiFi_stop(){
+    commandPin = 1; //Enter command mode
+    uart_sendChar(WIFI_STOP_COMMAND); //Send command
+    response = uart_waitForChar(); //Wait for response
+    commandPin = 0; //Leave command mode
+    if(response != 0) {
+        //An error occurred…
+    }
+}

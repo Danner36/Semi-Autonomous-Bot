@@ -1,0 +1,16 @@
+/*
+ * uart.c
+ *
+ *  Created on: Sep 28, 2017
+ *      Author: jdanner
+ */
+
+void uart_init(){
+    SYSCTL_RCGCGPIO_R = 0x02;
+
+    UART1_CTL_R = 0xFFFFFFFE;
+    UART1_IBRD_R = 0x8;
+
+}
+
+

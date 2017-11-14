@@ -1,0 +1,21 @@
+#include "open_interface.h"
+#include "movement.h"
+
+void main() {
+    oi_t *sensor_data = oi_alloc();
+    oi_init(sensor_data); //Problem?
+
+    int sum;
+
+    while(sum < 20000){
+
+        oi_update(sensor_data);
+
+        if (sensor_data->bumpLeft) {
+           move_backward(sensor_data, )
+        }
+
+    }
+
+    oi_free(sensor_data);
+}

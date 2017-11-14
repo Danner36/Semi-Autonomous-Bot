@@ -1,0 +1,49 @@
+#include "button.h"
+#include "servo.h"
+#include "lcd.h"
+
+#define DEGREE 152
+
+int current_degree = 90;
+int direction = 1;
+
+
+void main() {
+
+    init_PortB();
+    clock_timer_init();
+    button_init();
+
+    int pulse_period = PERIOD + MID;
+
+    while (1) {
+
+        switch(button_getButton()) {
+
+       //Clockwise Full -
+       case 1:
+           pulse_period += DEGREE;
+
+           break;
+
+       //Clockwise 45
+       case 2:
+           pulse_period += CW_45;
+           break;
+
+       //Midpoint - 90 degrees
+       case 3:
+           ;
+           break;
+
+       //Counterclockwise 135
+       case 4:
+           direction *= -1;
+           break;
+
+       }
+    }
+
+    move_servo(2);
+}
+

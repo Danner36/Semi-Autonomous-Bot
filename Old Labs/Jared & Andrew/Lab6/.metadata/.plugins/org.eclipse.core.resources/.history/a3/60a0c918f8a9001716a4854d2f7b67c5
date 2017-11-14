@@ -1,0 +1,20 @@
+#include "timer.h"
+#include "adc.h"
+#include "lcd.h"
+
+
+void main() {
+    adc_Start();
+    lcd_init();
+
+    while(1){
+
+        int result = adc_Read();
+
+        lcd_printf("%d", result);
+
+    }
+
+    adc_Stop();
+}
+
