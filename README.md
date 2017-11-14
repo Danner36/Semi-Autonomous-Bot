@@ -1,6 +1,7 @@
-### PrawnStars ###
+# PrawnStars
 
-# Jared Danner
+### Members ###
+### Jared Danner ###
 # 
 # 
 # 
