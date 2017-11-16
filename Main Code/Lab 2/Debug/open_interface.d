@@ -15,6 +15,7 @@ open_interface.obj: C:/ti/TivaWare_C_Series-2.1.2.111/inc/tm4c123gh6pm.h
 open_interface.obj: ../lcd.h
 open_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/stdio.h
 open_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/string.h
+open_interface.obj: ../timer.h
 
 ../open_interface.c: 
 ../open_interface.h: 
@@ -31,3 +32,4 @@ C:/ti/TivaWare_C_Series-2.1.2.111/inc/tm4c123gh6pm.h:
 ../lcd.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/stdio.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/string.h: 
+../timer.h: 

@@ -10,10 +10,12 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../adc.c \
+../cliffSensor.c \
 ../init.c \
 ../lcd.c \
 ../main.c \
 ../movement.c \
+../movementTest.c \
 ../open_interface.c \
 ../servo.c \
 ../sonar.c \
@@ -24,10 +26,12 @@ C_SRCS += \
 
 C_DEPS += \
 ./adc.d \
+./cliffSensor.d \
 ./init.d \
 ./lcd.d \
 ./main.d \
 ./movement.d \
+./movementTest.d \
 ./open_interface.d \
 ./servo.d \
 ./sonar.d \
@@ -38,10 +42,12 @@ C_DEPS += \
 
 OBJS += \
 ./adc.obj \
+./cliffSensor.obj \
 ./init.obj \
 ./lcd.obj \
 ./main.obj \
 ./movement.obj \
+./movementTest.obj \
 ./open_interface.obj \
 ./servo.obj \
 ./sonar.obj \
@@ -52,10 +58,12 @@ OBJS += \
 
 OBJS__QUOTED += \
 "adc.obj" \
+"cliffSensor.obj" \
 "init.obj" \
 "lcd.obj" \
 "main.obj" \
 "movement.obj" \
+"movementTest.obj" \
 "open_interface.obj" \
 "servo.obj" \
 "sonar.obj" \
@@ -66,10 +74,12 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "adc.d" \
+"cliffSensor.d" \
 "init.d" \
 "lcd.d" \
 "main.d" \
 "movement.d" \
+"movementTest.d" \
 "open_interface.d" \
 "servo.d" \
 "sonar.d" \
@@ -80,10 +90,12 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../adc.c" \
+"../cliffSensor.c" \
 "../init.c" \
 "../lcd.c" \
 "../main.c" \
 "../movement.c" \
+"../movementTest.c" \
 "../open_interface.c" \
 "../servo.c" \
 "../sonar.c" \
