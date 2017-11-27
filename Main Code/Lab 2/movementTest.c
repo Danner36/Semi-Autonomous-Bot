@@ -5,6 +5,8 @@
 
 /**Tests for movement, bumpers, and cliff sensors/signals */
 
+/* Alternate main
+ *
 void main() {
 
     enum status STATE = CLEAR;
@@ -39,3 +41,5 @@ void main() {
 
     oi_free(sensor_data);
 }
+
+*/
