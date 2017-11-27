@@ -81,7 +81,6 @@ enum status STATE = NONE;
  * MAIN PROGRAM. Runs loop, collects data, performs calculations, and transmits data.
  */
 
-/*
 void main() {
 
     //Initializes all devices and variables.
@@ -209,7 +208,6 @@ void main() {
     //Waits for servo to complete turn before power off and or stall.
     timer_waitMillis(1000);
 }
-*/
 
 
 //HELPER METHODS
