@@ -1,58 +1,80 @@
-/*
- * movement.c
- *
- *  Created on: Sep 7, 2017
- *      Author: Jared & Andrew
- */
-#include "open_interface.h"
+#include "movement.h"
 
-int move_forward(oi_t *sensor, int centimeters) {
+/**Move forward for a certain distance; return 1 if stopped by right bumper, -1 by left */
+enum status move_forward(oi_t *sensor, int centimeters, int spd) {
+
+    enum status STATE = CLEAR;
 
     int sum = 0;
-    oi_setWheels(250, 250); // move forward;
-    while (sum < centimeters) {
+    oi_setWheels(spd, spd); // move forward;
+
+    while (sum < centimeters*10) {
         oi_update(sensor);
 
-        if(sensor->bumpLeft || sensor->bumpRight){
-            oi_setWheels(0, 0); // stop
-            return sum;
+        if (sensor->bumpLeft) {
+            STATE = LEFT_BUMPER;
+            break;
+        }
+        else if (sensor->bumpRight) {
+            STATE = RIGHT_BUMPER;
+            break;
+        }
+        else if (checkAnyCliff(sensor)) {
+            STATE = CLIFF;
+            break;
+        }
+        else if (checkBoundary(sensor)) {
+            STATE = BOUNDARY;
+            break;
         }
 
         sum += sensor->distance;
     }
-    oi_setWheels(0, 0); // stop
 
-    return sum;
+    stop();
+
+    return STATE;
 }
 
 void turn_ccw(oi_t *sensor, int degrees) {
+
     int sum = 0;
-    oi_setWheels(250, -250); // move forward;
+    oi_setWheels(SPD, -SPD); // move forward;
+
     while (sum < degrees) {
         oi_update(sensor);
         sum += sensor->angle;
     }
-    oi_setWheels(0, 0); // stop
 
+    stop();
 }
 
 void turn_cw(oi_t *sensor, int degrees) {
+
     int sum = degrees;
-    oi_setWheels(-250, 250); // move forward;
+    oi_setWheels(-SPD, SPD); // move forward;
+
     while (sum > 0) {
         oi_update(sensor);
         sum += sensor->angle;
     }
-    oi_setWheels(0, 0); // stop
 
+    stop();
 }
 
-void move_backward(oi_t *sensor) {
-    int sum = 150;
-    oi_setWheels(-250, -250); // move forward;
+void move_backward(oi_t *sensor, int centimeters, int spd) {
+
+    int sum = centimeters;
+    oi_setWheels(-spd, -spd); // move forward;
+
     while (sum > 0) {
         oi_update(sensor);
         sum += sensor->distance;
     }
-    oi_setWheels(0, 0); // stop
+
+    stop();
+}
+
+void stop() {
+    oi_setWheels(0, 0);
 }

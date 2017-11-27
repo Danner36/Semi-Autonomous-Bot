@@ -80,6 +80,7 @@ enum status STATE = NONE;
 /**
  * MAIN PROGRAM. Runs loop, collects data, performs calculations, and transmits data.
  */
+
 void main() {
 
     //Initializes all devices and variables.
@@ -143,7 +144,7 @@ void main() {
         }
 
         //Object has been lost. Current data shows no object within 100cm.
-        else if ( /*(STATE == DETECTED || */ STATE == SCANNING /*)*/ && (irDis > 100 || sonarDis > 100)) {
+        else if (STATE == SCANNING && (irDis > 100 || sonarDis > 100)) {
 
             int angleCalibration = 2;
 
@@ -161,7 +162,7 @@ void main() {
             //Calculate the angle of the object.
             int objectAngle = ((angle2 - angle1) - 2);
 
-            float objectWidth = calculateLinearWidth(objectAngle, /*objectDis*/ firstDistance);
+            float objectWidth = calculateLinearWidth(objectAngle, firstDistance);
 
             //Compares this object to that of the last object.
             if (numObjects == 1) {
@@ -171,7 +172,7 @@ void main() {
                 Comparator.linearWidth = objectWidth;
                 Comparator.firstDistance = firstDistance;
             }
-            else if (numObjects != 1 && ( objectWidth < Comparator.linearWidth /*objectAngle < Comparator.angle */)) {
+            else if (numObjects != 1 && (objectWidth < Comparator.linearWidth)) {
                 Comparator.index = Comparator.index + 1;
                 Comparator.degree = degreeOfObject;
                 Comparator.angle = objectAngle;
@@ -186,9 +187,7 @@ void main() {
     }
 
     //Prints the overall results of the scan to the robots lcd screen.
-    //lcd_printf("Object Num: %d\nShortest Distance: %0.2f\nObject Angle: %d", numObjects, Comparator.distance, Comparator.angle);
-
-    //lcd_printf("Objects: %d\nIndex: %d", numObjects, Comparator.index);
+    lcd_printf("Objects: %d\nIndex: %d", numObjects, Comparator.index);
 
     char data[50];
     sprintf(data, "\n\rObjects: %d\n\rIndex: %d\n\rWidth: %0.2f", numObjects, Comparator.index, Comparator.linearWidth);
@@ -209,7 +208,6 @@ void main() {
     //Waits for servo to complete turn before power off and or stall.
     timer_waitMillis(1000);
 }
-
 
 
 //HELPER METHODS
