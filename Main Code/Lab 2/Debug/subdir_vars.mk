@@ -16,6 +16,7 @@ C_SRCS += \
 ../main.c \
 ../movement.c \
 ../movementTest.c \
+../music.c \
 ../open_interface.c \
 ../scanner.c \
 ../servo.c \
@@ -33,6 +34,7 @@ C_DEPS += \
 ./main.d \
 ./movement.d \
 ./movementTest.d \
+./music.d \
 ./open_interface.d \
 ./scanner.d \
 ./servo.d \
@@ -50,6 +52,7 @@ OBJS += \
 ./main.obj \
 ./movement.obj \
 ./movementTest.obj \
+./music.obj \
 ./open_interface.obj \
 ./scanner.obj \
 ./servo.obj \
@@ -67,6 +70,7 @@ OBJS__QUOTED += \
 "main.obj" \
 "movement.obj" \
 "movementTest.obj" \
+"music.obj" \
 "open_interface.obj" \
 "scanner.obj" \
 "servo.obj" \
@@ -84,6 +88,7 @@ C_DEPS__QUOTED += \
 "main.d" \
 "movement.d" \
 "movementTest.d" \
+"music.d" \
 "open_interface.d" \
 "scanner.d" \
 "servo.d" \
@@ -101,6 +106,7 @@ C_SRCS__QUOTED += \
 "../main.c" \
 "../movement.c" \
 "../movementTest.c" \
+"../music.c" \
 "../open_interface.c" \
 "../scanner.c" \
 "../servo.c" \

@@ -1,3 +1,5 @@
+//This fill includes initialization for timers
+
 #include "init.h"
 
 //SERVO - PB 5, SONAR - PB3

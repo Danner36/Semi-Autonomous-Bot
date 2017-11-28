@@ -9,15 +9,15 @@ main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdint.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 main.obj: C:/ti/TivaWare_C_Series-2.1.2.111/inc/tm4c123gh6pm.h
 main.obj: ../timer.h
-main.obj: ../movement.h
-main.obj: ../open_interface.h
+main.obj: U:/git/PrawnStars/Main\ Code/Lab\ 2/open_interface.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdlib.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/_defs.h
-main.obj: ../Timer.h
-main.obj: ../lcd.h
+main.obj: U:/git/PrawnStars/Main\ Code/Lab\ 2/Timer.h
+main.obj: U:/git/PrawnStars/Main\ Code/Lab\ 2/lcd.h
+main.obj: ../movement.h
 main.obj: ../cliffSensor.h
 main.obj: ../init.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
@@ -50,6 +50,7 @@ main.obj: U:/git/PrawnStars/Main\ Code/Lab\ 2/servo.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
+main.obj: ../music.h
 
 ../main.c: 
 ../lcd.h: 
@@ -60,15 +61,15 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdint.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 
 C:/ti/TivaWare_C_Series-2.1.2.111/inc/tm4c123gh6pm.h: 
 ../timer.h: 
-../movement.h: 
-../open_interface.h: 
+U:/git/PrawnStars/Main\ Code/Lab\ 2/open_interface.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdlib.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/_defs.h: 
-../Timer.h: 
-../lcd.h: 
+U:/git/PrawnStars/Main\ Code/Lab\ 2/Timer.h: 
+U:/git/PrawnStars/Main\ Code/Lab\ 2/lcd.h: 
+../movement.h: 
 ../cliffSensor.h: 
 ../init.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
@@ -101,3 +102,4 @@ U:/git/PrawnStars/Main\ Code/Lab\ 2/servo.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
+../music.h: 
