@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS
+CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -18,6 +18,7 @@ ORDERED_OBJS += \
 "./movement.obj" \
 "./movementTest.obj" \
 "./open_interface.obj" \
+"./scanner.obj" \
 "./servo.obj" \
 "./sonar.obj" \
 "./timer.obj" \
@@ -154,21 +155,21 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab\ 2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab 2.map" --heap_size=1024 --stack_size=2048 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab 2_linkInfo.xml" --rom_model -o "Lab 2.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Lab 2.map" --heap_size=1024 --stack_size=2048 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab 2_linkInfo.xml" --rom_model -o "Lab 2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Lab\ 2.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/bin/armhex"  -o "Lab 2.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/bin/armhex"  -o "Lab 2.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "adc.obj" "cliffSensor.obj" "init.obj" "lcd.obj" "main.obj" "movement.obj" "movementTest.obj" "open_interface.obj" "servo.obj" "sonar.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
-	-$(RM) "adc.d" "cliffSensor.d" "init.d" "lcd.d" "main.d" "movement.d" "movementTest.d" "open_interface.d" "servo.d" "sonar.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
+	-$(RM) "adc.obj" "cliffSensor.obj" "init.obj" "lcd.obj" "main.obj" "movement.obj" "movementTest.obj" "open_interface.obj" "scanner.obj" "servo.obj" "sonar.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
+	-$(RM) "adc.d" "cliffSensor.d" "init.d" "lcd.d" "main.d" "movement.d" "movementTest.d" "open_interface.d" "scanner.d" "servo.d" "sonar.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
