@@ -17,6 +17,7 @@ C_SRCS += \
 ../movement.c \
 ../movementTest.c \
 ../open_interface.c \
+../scanner.c \
 ../servo.c \
 ../sonar.c \
 ../timer.c \
@@ -33,6 +34,7 @@ C_DEPS += \
 ./movement.d \
 ./movementTest.d \
 ./open_interface.d \
+./scanner.d \
 ./servo.d \
 ./sonar.d \
 ./timer.d \
@@ -49,6 +51,7 @@ OBJS += \
 ./movement.obj \
 ./movementTest.obj \
 ./open_interface.obj \
+./scanner.obj \
 ./servo.obj \
 ./sonar.obj \
 ./timer.obj \
@@ -65,6 +68,7 @@ OBJS__QUOTED += \
 "movement.obj" \
 "movementTest.obj" \
 "open_interface.obj" \
+"scanner.obj" \
 "servo.obj" \
 "sonar.obj" \
 "timer.obj" \
@@ -81,6 +85,7 @@ C_DEPS__QUOTED += \
 "movement.d" \
 "movementTest.d" \
 "open_interface.d" \
+"scanner.d" \
 "servo.d" \
 "sonar.d" \
 "timer.d" \
@@ -97,6 +102,7 @@ C_SRCS__QUOTED += \
 "../movement.c" \
 "../movementTest.c" \
 "../open_interface.c" \
+"../scanner.c" \
 "../servo.c" \
 "../sonar.c" \
 "../timer.c" \
