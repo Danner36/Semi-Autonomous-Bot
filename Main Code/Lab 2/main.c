@@ -71,5 +71,3 @@ void power_flash(int on, int color) {
     oi_setLeds(on, 0, color, 255);
 }
 
-
-
