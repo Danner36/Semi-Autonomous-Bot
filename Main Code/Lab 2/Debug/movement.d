@@ -18,6 +18,8 @@ movement.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 movement.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 movement.obj: ../timer.h
 movement.obj: ../cliffSensor.h
+movement.obj: ../uart.h
+movement.obj: ../timer.h
 
 ../movement.c: 
 ../movement.h: 
@@ -37,3 +39,5 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 
 ../timer.h: 
 ../cliffSensor.h: 
+../uart.h: 
+../timer.h: 
