@@ -18,6 +18,8 @@ movementTest.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/strin
 movementTest.obj: ../timer.h
 movementTest.obj: ../movement.h
 movementTest.obj: ../cliffSensor.h
+movementTest.obj: ../uart.h
+movementTest.obj: ../timer.h
 movementTest.obj: ../lcd.h
 movementTest.obj: ../timer.h
 
@@ -39,5 +41,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h:
 ../timer.h: 
 ../movement.h: 
 ../cliffSensor.h: 
+../uart.h: 
+../timer.h: 
 ../lcd.h: 
 ../timer.h: 

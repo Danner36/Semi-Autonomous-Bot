@@ -33,6 +33,6 @@ void initialize();
 
 void resetTempVars();
 
-void sendData(int i);
+void sendData(int i, float linearWidth);
 
 void sendHeader();

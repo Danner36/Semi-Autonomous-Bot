@@ -29,16 +29,7 @@ int pulse_period = 0;
 //   was detected for.
 float cyclesDetected = 0.0;
 
-//SMALLEST OBJECT STRUCT
-struct Smallest {
-    int index;
-    int degree;
-    int angle;
-    float firstDistance;
-    float linearWidth;
-    float distance;
-};
-struct Smallest Comparator;
+float linearWidth = 0.0;
 
 //Used to keep track of this projects status as a state machine.
 enum status {NONE , DETECTED, SCANNING};
@@ -46,6 +37,7 @@ enum status STATE = NONE;
 
 //Collect data on surroundings in 180-degree scan
 void scan() {
+
     reset();
 
     int i = 0;
@@ -63,9 +55,6 @@ void scan() {
 
         //Collects data from both IR & Sonar sensors.
         collectData();
-
-        //Sends the current most cycles data to Putty.
-        sendData(i);
 
         //Object has been detected. Updates state machine.
         if ((STATE == NONE) && ((irDis < 100) && (sonarDis < 100))) {
@@ -125,51 +114,19 @@ void scan() {
             //Calculate the angle of the object.
             int objectAngle = ((angle2 - angle1) - 2);
 
-            float objectWidth = calculateLinearWidth(objectAngle, firstDistance);
-
-            //Compares this object to that of the last object.
-            if (numObjects == 1) {
-                Comparator.degree = degreeOfObject;
-                Comparator.angle = objectAngle;
-                Comparator.distance = objectDis;
-                Comparator.linearWidth = objectWidth;
-                Comparator.firstDistance = firstDistance;
-            }
-            else if (numObjects != 1 && (objectWidth < Comparator.linearWidth)) {
-                Comparator.index = Comparator.index + 1;
-                Comparator.degree = degreeOfObject;
-                Comparator.angle = objectAngle;
-                Comparator.distance = objectDis;
-                Comparator.linearWidth = objectWidth;
-                Comparator.firstDistance = firstDistance;
-            }
+            linearWidth = calculateLinearWidth(objectAngle, firstDistance);
 
             //Resets temporary variables.
             resetTempVars();
         }
+
+        //Sends the current most cycles data to Putty.
+        sendData(i, linearWidth);
+
+        linearWidth = 0;
     }
 
-    //Prints the overall results of the scan to the robots lcd screen.
-    lcd_printf("Objects: %d\nIndex: %d", numObjects, Comparator.index);
-
-    char data[50];
-    sprintf(data, "\n\rObjects: %d\n\rIndex: %d\n\rWidth: %0.2f", numObjects, Comparator.index, Comparator.linearWidth);
-
-    uart_sendChar('\r');
-
-    int j = 0;
-    for(j = 0; j < strlen(data); j++) {
-        uart_sendChar(data[j]);
-    }
-
-    uart_sendChar('\n');
-
-    //Moves the servo to the position of the smallest object.
-    int calibration = 6;
-    move_servo(PERIOD + CW + ((Comparator.degree-calibration) * DEGREE)); //ABK - we want the degree, not the angular size
-
-    //Waits for servo to complete turn before power off and or stall.
-    timer_waitMillis(1000);
+    timer_waitMillis(200);
 }
 
 void reset() {
@@ -192,7 +149,6 @@ void reset() {
     cyclesDetected = 0.0;
 
     STATE = NONE;
-    Comparator.index = 0;
 
     //Resets the servo's position to zero degrees (Far right).
     pulse_period = PERIOD + CW;
@@ -202,7 +158,7 @@ void reset() {
     timer_waitMillis(1500);
 
     //Sends the header information to Putty.
-    sendHeader();
+    //sendHeader();
 }
 
 //Linear Width
@@ -257,9 +213,9 @@ void resetTempVars(){
 }
 
 //Sends current information to Putty.
-void sendData(int i){
+void sendData(int i, float linearWidth) {
     char data[50];
-    sprintf(data, "%i\t\t%0.1f\t\t\t%0.2f\t\t\t%0.2f", i, irDis, sonarDis, Comparator.linearWidth);
+    sprintf(data, "%i,%0.1f,%0.2f,%0.2f", i, irDis, sonarDis, linearWidth);
 
     uart_sendChar('\r');
 
@@ -271,7 +227,7 @@ void sendData(int i){
     uart_sendChar('\n');
 }
 
-//Sends Header information to Putty.
+//Sends Header information to Putty
 void sendHeader(){
 
     char* header = "Degrees\t\tIR Distance (cm)\tSonar Distance (cm)\tWidth";
@@ -280,7 +236,6 @@ void sendHeader(){
     uart_sendChar('\n');
     uart_sendChar('\n');
     uart_sendChar('\r');
-
 
     int i = 0;
     //Iterators through the array, sends each character to Putty via WiFi.

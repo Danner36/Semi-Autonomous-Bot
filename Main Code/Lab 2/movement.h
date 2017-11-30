@@ -1,12 +1,13 @@
 #include "open_interface.h"
 #include "cliffSensor.h"
+#include "uart.h"
 
 #define SPD 250 //Normal Speed
 #define SLOW 100 //Slow Speed
 
-enum status {CLEAR, LEFT_BUMPER, RIGHT_BUMPER, CLIFF, BOUNDARY};
+char move_forward(oi_t *sensor, int centimeters, int speed);
 
-enum status move_forward(oi_t *sensor, int centimeters, int speed);
+char checkAll();
 
 void turn_ccw(oi_t *sensor, int degrees);
 
