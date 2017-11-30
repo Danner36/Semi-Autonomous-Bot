@@ -16,6 +16,10 @@ volatile signed difference = 0;
 //Overflow status of the program.
 volatile int overflow = 0;
 
+/**
+ * Interrupt function for Timer 3B.
+ * Records rising and falling edges.
+ */
 void TIMER3B_Handler(void){
 
     //Clears interrupt flags.
@@ -30,6 +34,7 @@ void TIMER3B_Handler(void){
         //Switches to watch for the second clock edge.
         cycle = Falling_Edge;
     }
+
     //Checks for the falling edge of the clock cycle.
     else if(cycle == Falling_Edge){
 
@@ -42,7 +47,10 @@ void TIMER3B_Handler(void){
     }
 }
 
-
+/**
+ * PWM pulse for sending out Sonar.
+ * Send out pulse and then prepare to receive it back.
+ */
 void send_pulse(){
 
     //Disables alternate function for PORTB.
@@ -68,7 +76,9 @@ void send_pulse(){
 
 }
 
-
+/**
+ * Wait for a return pulse from previously-sent sonar
+ */
 float ping_read(){
 
     //Sends sonar pulse.

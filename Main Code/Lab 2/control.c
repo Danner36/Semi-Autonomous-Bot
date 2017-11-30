@@ -1,5 +1,8 @@
 #include "control.h"
 
+/**
+ * Input from the xbox controller is interpreted as a keystroke and the proper action is performed by the bot
+ */
 char controller_input(unsigned char input,  oi_t *sensor)
 {
     char obstacle = 0;
@@ -39,11 +42,3 @@ char controller_input(unsigned char input,  oi_t *sensor)
     return obstacle;
 
 }
-
-//Extra code from earlier - may be unnecessary
-//        if(input_data[y] == 'a'){
-        //            for (execute = ; y > 0; y--) // reads the array and does the output of the of each letter in controller_input.
-        //            {
-        //                controller_input(input_data[y]);
-        //            }
-        //        }

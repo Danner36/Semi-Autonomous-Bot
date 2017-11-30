@@ -8,6 +8,12 @@
 #define BOUND_MIN 2600
 #define BOUND_MAX 2900
 
+/**
+ * Update cliff sensor variables and check if any are positive
+ */
 char checkAnyCliff(oi_t* sensor_data);
 
+/**
+ * Update cliff signals and check if any read the boundary color
+ */
 char checkBoundary(oi_t* sensor_data);

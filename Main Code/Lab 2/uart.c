@@ -1,13 +1,8 @@
-/*
- * uart.c
- *
- *  Created on: Sep 28, 2017
- *      Author: jdanner
- */
-
 #include "uart.h"
 
-//Initialize USART1 to a given baud rate
+/**
+ * Initialize USART1 to a given baud rate
+ */
 void uart_init(void) {
 
     //enable clock to GPIO, R1 = port B
@@ -53,8 +48,10 @@ void uart_init(void) {
 }
 
 
-//Blocking call to receive over uart1
-//returns char with data
+/**
+ * Blocking call to receive over uart1.
+ * Returns char with data.
+ */
 char uart_receive(){
     char data = 0;
 
@@ -68,7 +65,9 @@ char uart_receive(){
 }
 
 
-//Blocking call that sends 1 char over UART 1
+/**
+ * Blocking call that sends 1 char over UART 1
+ */
 void uart_sendChar(char data)
 {
     //wait until there is room to send data

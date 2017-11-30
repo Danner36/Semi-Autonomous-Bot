@@ -1,7 +1,14 @@
 #include "movement.h"
 
-/**Move forward for a certain distance;
+/**
  *
+ * Move forward a certain distance
+ *
+ * sensor - open interace sensor pointer
+ * centimeters - how far the bot will travel before stoping
+ * spd - speed, how fast the motors will turn
+ *
+ * returns a number for any obstacle encountered:
  * 0 = Clear
  * 1 = Left Bumper
  * 2 = Right Bumper
@@ -55,6 +62,12 @@ char move_forward(oi_t *sensor, int centimeters, int spd) {
     return 0;
 }
 
+/**
+ * A check of all obstacles detectable by the open interface.
+ * Run at the beginning of forward movement as an initial check.
+ *
+ * sensor - open interface sensor pointer
+ */
 char checkAll(oi_t *sensor) {
     if (sensor->bumpLeft) {
         uart_sendChar('1');
@@ -76,6 +89,12 @@ char checkAll(oi_t *sensor) {
     return 0;
 }
 
+/**
+ * Turn counterclockwise a certain number of degrees slowly
+ *
+ * sensor - an open interface sensor pointer
+ * degrees - how far the bot will turn
+ */
 void turn_ccw(oi_t *sensor, int degrees) {
 
     int sum = 0;
@@ -91,6 +110,12 @@ void turn_ccw(oi_t *sensor, int degrees) {
     uart_sendChar('6');
 }
 
+/**
+ * Turn clockwise a certain number of degrees slowly
+ *
+ * sensor - an open interface sensor pointer
+ * degrees - how far the bot will turn
+ */
 void turn_cw(oi_t *sensor, int degrees) {
 
     int sum = degrees;
@@ -106,6 +131,13 @@ void turn_cw(oi_t *sensor, int degrees) {
     uart_sendChar('6');
 }
 
+/**
+ * Move in reverse a certain distance
+ *
+ * sensor - an open interface sensor pointer
+ * centimeters - how far the bot will move backwards
+ * spd - the speed at which the bot will move (speed of the motors)
+ */
 void move_backward(oi_t *sensor, int centimeters, int spd) {
 
     int sum = centimeters;
@@ -121,6 +153,9 @@ void move_backward(oi_t *sensor, int centimeters, int spd) {
     uart_sendChar('7');
 }
 
+/**
+ * Stop the bot by disabling its motors
+ */
 void stop() {
     oi_setWheels(0, 0);
 }

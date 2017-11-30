@@ -1,8 +1,11 @@
-//This fill includes initialization for timers
+//This file includes initialization for timers
 
 #include "init.h"
 
-//SERVO - PB 5, SONAR - PB3
+/*
+ * Initialize GPIO Port B for Servos and Sonar readings
+ * SERVO - PB 5, SONAR - PB3
+ */
 void init_PortB() {
 
     //Enables clock for portB.
@@ -21,7 +24,9 @@ void init_PortB() {
     GPIO_PORTB_DIR_R |= 0x20;
 }
 
-//Configures TIMER3B and TIMER1B
+/*
+ * Configures TIMER 3B and TIMER 1B
+ */
 void init_timers(void){
 
     //SYSTEM CTL - Enables clock for TIMER3, TIMER1
@@ -82,6 +87,10 @@ void init_timers(void){
     TIMER1_CTL_R |= TIMER_CTL_TBEN; // 1B
 }
 
+/**
+ * Initialize Port B and Timers
+ * Calls two sub-functions for simplicity
+ */
 void portB_init() {
     init_PortB();
     init_timers();

@@ -1,5 +1,8 @@
 #include "adc.h"
 
+/**
+ * Initialize sample sequencing and wait for a conversion response
+ */
 int adc_Read(){
 
     //initiate SS1 conversion
@@ -14,6 +17,9 @@ int adc_Read(){
     return (int)ADC0_SSFIFO0_R;
 }
 
+/**
+ * Initialize everything necessary for ADC
+ */
 void adc_init(){
     //enable ADC 0 module on port D
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R1;

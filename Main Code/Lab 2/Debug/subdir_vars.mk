@@ -16,7 +16,6 @@ C_SRCS += \
 ../lcd.c \
 ../main.c \
 ../movement.c \
-../movementTest.c \
 ../music.c \
 ../open_interface.c \
 ../scanner.c \
@@ -35,7 +34,6 @@ C_DEPS += \
 ./lcd.d \
 ./main.d \
 ./movement.d \
-./movementTest.d \
 ./music.d \
 ./open_interface.d \
 ./scanner.d \
@@ -54,7 +52,6 @@ OBJS += \
 ./lcd.obj \
 ./main.obj \
 ./movement.obj \
-./movementTest.obj \
 ./music.obj \
 ./open_interface.obj \
 ./scanner.obj \
@@ -73,7 +70,6 @@ OBJS__QUOTED += \
 "lcd.obj" \
 "main.obj" \
 "movement.obj" \
-"movementTest.obj" \
 "music.obj" \
 "open_interface.obj" \
 "scanner.obj" \
@@ -92,7 +88,6 @@ C_DEPS__QUOTED += \
 "lcd.d" \
 "main.d" \
 "movement.d" \
-"movementTest.d" \
 "music.d" \
 "open_interface.d" \
 "scanner.d" \
@@ -111,7 +106,6 @@ C_SRCS__QUOTED += \
 "../lcd.c" \
 "../main.c" \
 "../movement.c" \
-"../movementTest.c" \
 "../music.c" \
 "../open_interface.c" \
 "../scanner.c" \

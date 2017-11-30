@@ -1,6 +1,11 @@
 #include "servo.h"
 #include <inc/tm4c123gh6pm.h>
 
+/**
+ * Rotate servo
+ *
+ * pulse - length of pulse
+ */
 void move_servo(int pulse) {
     //Lower 16
     TIMER1_TBILR_R = pulse & 0xFFFF;
@@ -14,35 +19,16 @@ void move_servo(int pulse) {
 
     //Pause between servo movements
     timer_waitMillis(20);
-
-    /*
-    //Lower 16
-    TIMER1_TBILR_R = PERIOD & 0xFFFF;
-
-    //Upper 8
-    TIMER1_TBPR_R = (PERIOD >> 16) & 0xFF;
-
-    //Set
-    TIMER1_TBMATCHR_R = pulse & 0xFFFF;
-    TIMER1_TBPMR_R = (pulse >> 16) & 0xFF;
-    */
 }
 
+/**
+ * Alternative rotate servo
+ *
+ * degree - degree the servo should be moved to
+ */
 void move_servo2(int degree) {
     //Pulse
     int pulse_period = setPeriod(degree);
-
-    /*
-    //Lower 16
-    TIMER1_TBILR_R = pulse_period & 0xFFFF; // ???
-
-    //Upper 8
-    TIMER1_TBPR_R = (pulse_period >> 16) & 0xFF;
-
-    //Set
-    TIMER1_TBMATCHR_R = PERIOD & 0xFFFF;
-    TIMER1_TBPMR_R = (PERIOD >> 16) & 0xFF;
-    */
 
     //Lower 16
     TIMER1_TBILR_R = PERIOD & 0xFFFF; // ???
@@ -56,6 +42,11 @@ void move_servo2(int degree) {
     TIMER1_TBPMR_R = (pulse_period >> 16) & 0xFF;
 }
 
+/**
+ * Set the PWM period
+ *
+ * degree - chooses 0, 45, 90, 135, or 180 degrees to move servo to
+ */
 int setPeriod(int degree) {
 
     int pulse_period = PERIOD;
