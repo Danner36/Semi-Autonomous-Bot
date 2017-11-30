@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker PC v16.9.4                     
 ******************************************************************************
->> Linked Wed Nov 29 21:09:45 2017
+>> Linked Thu Nov 30 12:56:10 2017
 
 OUTPUT FILE NAME:   <Lab 2.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 00004d05
@@ -45,23 +45,23 @@ section   page    origin      length       input sections
                   000013aa    00000002                                   : mpu_init.obj (.text)
                   000013ac    00000a84     open_interface.obj (.text)
                   00001e30    000009ac     rtsv7M4_T_le_v4SPD16_eabi.lib : e_pow.obj (.text)
-                  000027dc    00000520     scanner.obj (.text)
-                  00002cfc    000003d0     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.text)
-                  000030cc    000002ec     lcd.obj (.text)
-                  000033b8    000001f4     rtsv7M4_T_le_v4SPD16_eabi.lib : ull_div_t2.obj (.text)
-                  000035ac    000001e2     movement.obj (.text)
-                  0000378e    000001b6     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_add_t2.obj (.text)
-                  00003944    00000170                                   : e_sqrt.obj (.text)
-                  00003ab4    0000016c     init.obj (.text)
-                  00003c20    00000158     timer.obj (.text)
-                  00003d78    00000136     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_div_t2.obj (.text)
-                  00003eae    00000002                                   : startup.obj (.text)
-                  00003eb0    0000012c     sonar.obj (.text)
-                  00003fdc    0000010c     wifi.obj (.text)
-                  000040e8    00000100     uart.obj (.text)
-                  000041e8    000000fc     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_mul_t2.obj (.text)
-                  000042e4    000000fc                                   : s_scalbn.obj (.text)
-                  000043e0    000000f8     main.obj (.text)
+                  000027dc    0000051c     scanner.obj (.text)
+                  00002cf8    000003d0     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.text)
+                  000030c8    000002ec     lcd.obj (.text)
+                  000033b4    000001f4     rtsv7M4_T_le_v4SPD16_eabi.lib : ull_div_t2.obj (.text)
+                  000035a8    000001e2     movement.obj (.text)
+                  0000378a    000001b6     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_add_t2.obj (.text)
+                  00003940    00000170                                   : e_sqrt.obj (.text)
+                  00003ab0    0000016c     init.obj (.text)
+                  00003c1c    00000158     timer.obj (.text)
+                  00003d74    00000136     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_div_t2.obj (.text)
+                  00003eaa    00000002                                   : startup.obj (.text)
+                  00003eac    0000012c     sonar.obj (.text)
+                  00003fd8    0000010c     wifi.obj (.text)
+                  000040e4    00000100     uart.obj (.text)
+                  000041e4    000000fc     main.obj (.text)
+                  000042e0    000000fc     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_mul_t2.obj (.text)
+                  000043dc    000000fc                                   : s_scalbn.obj (.text)
                   000044d8    000000e0     servo.obj (.text)
                   000045b8    000000c4     cliffSensor.obj (.text)
                   0000467c    000000c0     adc.obj (.text)
@@ -162,7 +162,7 @@ MODULE SUMMARY
        ------                         ----    -------   -------
     .\
        open_interface.obj             2716    15        40     
-       scanner.obj                    1312    0         45     
+       scanner.obj                    1308    0         45     
        lcd.obj                        764     8         84     
        tm4c123gh6pm_startup_ccs.obj   12      620       0      
        movement.obj                   482     0         0      
@@ -171,7 +171,7 @@ MODULE SUMMARY
        sonar.obj                      300     0         17     
        wifi.obj                       268     0         0      
        uart.obj                       256     0         0      
-       main.obj                       248     0         1      
+       main.obj                       252     0         1      
        servo.obj                      224     0         0      
        cliffSensor.obj                196     0         0      
        adc.obj                        192     0         0      
@@ -269,10 +269,10 @@ address   name
 UNDEFED   SHT$$INIT_ARRAY$$Base          
 UNDEFED   SHT$$INIT_ARRAY$$Limit         
 20000e9c  STATE                          
-00003eb1  TIMER3B_Handler                
-00004043  WiFi_Check                     
-00003fdd  WiFi_start                     
-00004035  WiFi_stop                      
+00003ead  TIMER3B_Handler                
+0000403f  WiFi_Check                     
+00003fd9  WiFi_start                     
+00004031  WiFi_stop                      
 20000a6c  __STACK_END                    
 00000800  __STACK_SIZE                   
 2000046c  __STACK_TOP                    
@@ -298,10 +298,10 @@ ffffffff  __TI_prof_data_start
 0000498b  __aeabi_cdrcmple               
 00004afd  __aeabi_d2f                    
 00004ee1  __aeabi_d2iz                   
-00003799  __aeabi_dadd                   
-00003d79  __aeabi_ddiv                   
-000041e9  __aeabi_dmul                   
-0000378f  __aeabi_dsub                   
+00003795  __aeabi_dadd                   
+00003d75  __aeabi_ddiv                   
+000042e1  __aeabi_dmul                   
+0000378b  __aeabi_dsub                   
 00004f29  __aeabi_f2d                    
 00004f95  __aeabi_i2d                    
 00004a11  __aeabi_memclr                 
@@ -313,7 +313,7 @@ ffffffff  __TI_prof_data_start
 00004a13  __aeabi_memset                 
 00004a13  __aeabi_memset4                
 00004a13  __aeabi_memset8                
-000033b9  __aeabi_uldivmod               
+000033b5  __aeabi_uldivmod               
 ffffffff  __binit__                      
 ffffffff  __c_args__                     
 000013ab  __mpu_init                     
@@ -325,9 +325,9 @@ ffffffff  __c_args__
 0000504f  _nop                           
 00005047  _register_lock                 
 00005041  _register_unlock               
-0000405b  _sendCommand                   
+00004057  _sendCommand                   
 20000a70  _sys_memory                    
-00003eaf  _system_post_cinit             
+00003eab  _system_post_cinit             
 000050e3  _system_pre_init               
 20000edc  _unlock                        
 00004d5d  abort                          
@@ -337,12 +337,12 @@ ffffffff  __c_args__
 20000e78  angle2                         
 00004e01  atoi                           
 ffffffff  binit                          
-00002a07  calculateLinearWidth           
-0000309d  calloc                         
-00003663  checkAll                       
+00002a05  calculateLinearWidth           
+00003099  calloc                         
+0000365f  checkAll                       
 000045b9  checkAnyCliff                  
 0000461b  checkBoundary                  
-00002a77  collectData                    
+00002a75  collectData                    
 00004b6b  controller_input               
 00004e4d  copy_in                        
 00005055  copysign                       
@@ -355,42 +355,42 @@ ffffffff  binit
 20000eb4  falling_time                   
 20000f55  feedback                       
 20000e88  firstDistance                  
-00002de7  free                           
+00002de3  free                           
 00004c41  frexp                          
 00004c41  frexpl                         
 20000000  g_pfnRAMVectors                
 00000000  g_pfnVectors                   
-00002a9b  getAverage                     
+00002a99  getAverage                     
 00001cc5  getDegrees                     
-00002b05  getIRtoDis                     
+00002b01  getIRtoDis                     
 00001a51  go_charge                      
-00003ab5  init_PortB                     
-00003ae9  init_timers                    
-00004467  initialize                     
+00003ab1  init_PortB                     
+00003ae5  init_timers                    
+0000426f  initialize                     
 20000e84  irDis                          
 000050a1  lcd_clear                      
-00003265  lcd_gotoLine                   
-000030cd  lcd_init                       
-000032cb  lcd_printf                     
-0000318d  lcd_putc                       
-000031c5  lcd_puts                       
-000031e3  lcd_sendCommand                
-00003221  lcd_sendNibble                 
-0000328d  lcd_setCursorPos               
-000042e5  ldexp                          
-000042e5  ldexpl                         
+00003261  lcd_gotoLine                   
+000030c9  lcd_init                       
+000032c7  lcd_printf                     
+00003189  lcd_putc                       
+000031c1  lcd_puts                       
+000031df  lcd_sendCommand                
+0000321d  lcd_sendNibble                 
+00003289  lcd_setCursorPos               
+000043dd  ldexp                          
+000043dd  ldexpl                         
 20000e98  linearWidth                    
 00004dad  ltoa                           
-000043e1  main                           
+000041e5  main                           
 20000ee4  main_func_sp                   
-00002d7d  malloc                         
-00002fb1  memalign                       
+00002d79  malloc                         
+00002fad  memalign                       
 00004fc3  memccpy                        
 000047e1  memcpy                         
 00004a19  memset                         
-00002cfd  minit                          
-00003737  move_backward                  
-000035ad  move_forward                   
+00002cf9  minit                          
+00003733  move_backward                  
+000035a9  move_forward                   
 000044d9  move_servo                     
 00004507  move_servo2                    
 20000e70  numObjects                     
@@ -414,50 +414,50 @@ ffffffff  binit
 00001b2b  oi_uartSendStr                 
 00001415  oi_update                      
 20000ebc  overflow                       
-00003f2f  ping_read                      
+00003f2b  ping_read                      
 00004e99  play_songs                     
-00003bcd  portB_init                     
+00003bc9  portB_init                     
 00001e31  pow                            
-00004495  power_flash                    
+0000429d  power_flash                    
 00001e31  powl                           
 20000e90  pulse_period                   
-00002ea9  realloc                        
-000029ab  reset                          
-00002b73  resetTempVars                  
+00002ea5  realloc                        
+000029a9  reset                          
+00002b6f  resetTempVars                  
 20000eb0  rising_time                    
-000042e5  scalbn                         
-000042e5  scalbnl                        
+000043dd  scalbn                         
+000043dd  scalbnl                        
 000027dd  scan                           
-00002b9d  sendData                       
-00002c21  sendHeader                     
-00003ee9  send_pulse                     
+00002b99  sendData                       
+00002c1d  sendHeader                     
+00003ee5  send_pulse                     
 0000453b  setPeriod                      
 0000473d  sinf                           
 20000e80  sonarDis                       
 00004ca5  sprintf                        
-00003945  sqrt                           
-00003945  sqrtl                          
-00003783  stop                           
+00003941  sqrt                           
+00003941  sqrtl                          
+0000377f  stop                           
 00005029  strchr                         
 00005011  strcmp                         
 00005069  strcpy                         
 0000507d  strlen                         
-00003d31  timer_getClock                 
-00003ce5  timer_startClock               
-00003c7f  timer_startTimer               
-00003d37  timer_stopClock                
-00003ccf  timer_stopTimer                
-00003c55  timer_waitMicros               
-00003c21  timer_waitMillis               
+00003d2d  timer_getClock                 
+00003ce1  timer_startClock               
+00003c7b  timer_startTimer               
+00003d33  timer_stopClock                
+00003ccb  timer_stopTimer                
+00003c51  timer_waitMicros               
+00003c1d  timer_waitMillis               
 20000e7c  totalAngle                     
 20000e8c  totalDis                       
-000036b7  turn_ccw                       
-000036f9  turn_cw                        
-000040e9  uart_init                      
-00004171  uart_receive                   
-00004197  uart_sendChar                  
+000036b3  turn_ccw                       
+000036f5  turn_cw                        
+000040e5  uart_init                      
+0000416d  uart_receive                   
+00004193  uart_sendChar                  
 0000487d  vsnprintf                      
-0000447b  wifiStart                      
+00004283  wifiStart                      
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -494,70 +494,70 @@ address   name
 00001e31  pow                            
 00001e31  powl                           
 000027dd  scan                           
-000029ab  reset                          
-00002a07  calculateLinearWidth           
-00002a77  collectData                    
-00002a9b  getAverage                     
-00002b05  getIRtoDis                     
-00002b73  resetTempVars                  
-00002b9d  sendData                       
-00002c21  sendHeader                     
-00002cfd  minit                          
-00002d7d  malloc                         
-00002de7  free                           
-00002ea9  realloc                        
-00002fb1  memalign                       
-0000309d  calloc                         
-000030cd  lcd_init                       
-0000318d  lcd_putc                       
-000031c5  lcd_puts                       
-000031e3  lcd_sendCommand                
-00003221  lcd_sendNibble                 
-00003265  lcd_gotoLine                   
-0000328d  lcd_setCursorPos               
-000032cb  lcd_printf                     
-000033b9  __aeabi_uldivmod               
-000035ad  move_forward                   
-00003663  checkAll                       
-000036b7  turn_ccw                       
-000036f9  turn_cw                        
-00003737  move_backward                  
-00003783  stop                           
-0000378f  __aeabi_dsub                   
-00003799  __aeabi_dadd                   
-00003945  sqrt                           
-00003945  sqrtl                          
-00003ab5  init_PortB                     
-00003ae9  init_timers                    
-00003bcd  portB_init                     
-00003c21  timer_waitMillis               
-00003c55  timer_waitMicros               
-00003c7f  timer_startTimer               
-00003ccf  timer_stopTimer                
-00003ce5  timer_startClock               
-00003d31  timer_getClock                 
-00003d37  timer_stopClock                
-00003d79  __aeabi_ddiv                   
-00003eaf  _system_post_cinit             
-00003eb1  TIMER3B_Handler                
-00003ee9  send_pulse                     
-00003f2f  ping_read                      
-00003fdd  WiFi_start                     
-00004035  WiFi_stop                      
-00004043  WiFi_Check                     
-0000405b  _sendCommand                   
-000040e9  uart_init                      
-00004171  uart_receive                   
-00004197  uart_sendChar                  
-000041e9  __aeabi_dmul                   
-000042e5  ldexp                          
-000042e5  ldexpl                         
-000042e5  scalbn                         
-000042e5  scalbnl                        
-000043e1  main                           
-00004467  initialize                     
-0000447b  wifiStart                      
-00004495  power_flash                    
+000029a9  reset                          
+00002a05  calculateLinearWidth           
+00002a75  collectData                    
+00002a99  getAverage                     
+00002b01  getIRtoDis                     
+00002b6f  resetTempVars                  
+00002b99  sendData                       
+00002c1d  sendHeader                     
+00002cf9  minit                          
+00002d79  malloc                         
+00002de3  free                           
+00002ea5  realloc                        
+00002fad  memalign                       
+00003099  calloc                         
+000030c9  lcd_init                       
+00003189  lcd_putc                       
+000031c1  lcd_puts                       
+000031df  lcd_sendCommand                
+0000321d  lcd_sendNibble                 
+00003261  lcd_gotoLine                   
+00003289  lcd_setCursorPos               
+000032c7  lcd_printf                     
+000033b5  __aeabi_uldivmod               
+000035a9  move_forward                   
+0000365f  checkAll                       
+000036b3  turn_ccw                       
+000036f5  turn_cw                        
+00003733  move_backward                  
+0000377f  stop                           
+0000378b  __aeabi_dsub                   
+00003795  __aeabi_dadd                   
+00003941  sqrt                           
+00003941  sqrtl                          
+00003ab1  init_PortB                     
+00003ae5  init_timers                    
+00003bc9  portB_init                     
+00003c1d  timer_waitMillis               
+00003c51  timer_waitMicros               
+00003c7b  timer_startTimer               
+00003ccb  timer_stopTimer                
+00003ce1  timer_startClock               
+00003d2d  timer_getClock                 
+00003d33  timer_stopClock                
+00003d75  __aeabi_ddiv                   
+00003eab  _system_post_cinit             
+00003ead  TIMER3B_Handler                
+00003ee5  send_pulse                     
+00003f2b  ping_read                      
+00003fd9  WiFi_start                     
+00004031  WiFi_stop                      
+0000403f  WiFi_Check                     
+00004057  _sendCommand                   
+000040e5  uart_init                      
+0000416d  uart_receive                   
+00004193  uart_sendChar                  
+000041e5  main                           
+0000426f  initialize                     
+00004283  wifiStart                      
+0000429d  power_flash                    
+000042e1  __aeabi_dmul                   
+000043dd  ldexp                          
+000043dd  ldexpl                         
+000043dd  scalbn                         
+000043dd  scalbnl                        
 000044d9  move_servo                     
 00004507  move_servo2                    
 0000453b  setPeriod                      

@@ -48,8 +48,11 @@ main.obj: ../uart.h
 main.obj: ../timer.h
 main.obj: ../scanner.h
 main.obj: ../init.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 main.obj: ../uart.h
 main.obj: ../timer.h
+main.obj: ../adc.h
+main.obj: ../lcd.h
 main.obj: ../servo.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
@@ -103,8 +106,11 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h:
 ../timer.h: 
 ../scanner.h: 
 ../init.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 ../uart.h: 
 ../timer.h: 
+../adc.h: 
+../lcd.h: 
 ../servo.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 

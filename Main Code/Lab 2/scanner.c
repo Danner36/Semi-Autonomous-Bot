@@ -1,7 +1,5 @@
 #include "scanner.h"
 
-//VARIABLES
-
 //Counter to keep track of detected objects.
 char numObjects = 0;
 
@@ -35,7 +33,9 @@ float linearWidth = 0.0;
 enum status {NONE , DETECTED, SCANNING};
 enum status STATE = NONE;
 
-//Collect data on surroundings in 180-degree scan
+/**
+ * Collect data on surroundings in 180-degree scan
+ */
 void scan() {
 
     reset();
@@ -114,7 +114,7 @@ void scan() {
             //Calculate the angle of the object.
             int objectAngle = ((angle2 - angle1) - 2);
 
-            linearWidth = calculateLinearWidth(objectAngle, firstDistance);
+            linearWidth = calculateLinearWidth(objectAngle, objectDis);
 
             //Resets temporary variables.
             resetTempVars();
@@ -129,6 +129,9 @@ void scan() {
     timer_waitMillis(200);
 }
 
+/**
+ * Reset all variables and return the servo to its starting position at 0 degrees
+ */
 void reset() {
     numObjects = 0;
 
@@ -157,11 +160,16 @@ void reset() {
     //1.5 second delay to ensure servo reaches the 0th degree.
     timer_waitMillis(1500);
 
-    //Sends the header information to Putty.
+    //Sends the header information to Putty (lab 9).
     //sendHeader();
 }
 
-//Linear Width
+/**
+ * Linear Width calculation
+ *
+ * angle - angular width of object as read by scanner
+ * distance - distance between scanner and target object
+ */
 float calculateLinearWidth(int angle, float distance) {
     float angleInRads = ((float)angle * (float)M_PI)/180.0;
 
@@ -172,13 +180,19 @@ float calculateLinearWidth(int angle, float distance) {
     return width;
 }
 
-//Collects data from both Sonar and IR sensors.
+/**
+ * Collect data from both Sonar and IR sensors.
+ */
 void collectData(){
     sonarDis = ping_read();
     irDis = getIRtoDis((float)adc_Read());
 }
 
-//Calculates and returns the average of the passed in array.
+/*
+ * Calculates and returns the average of the passed in array.
+ *
+ * array - an array of integers to average
+ */
 int getAverage(int array[]) {
 
     int i, sum = 0;
@@ -195,12 +209,18 @@ int getAverage(int array[]) {
     return (sum / i);
 }
 
-//Calculates the conversion from IR input to distance.
+/*
+ * Calculates the conversion from IR input to distance.
+ *
+ * result - distance in centimeters
+ */
 float getIRtoDis(float result){
     return (float)(1.682* pow(10,7))/(pow(result,500/239)) + 10;
 }
 
-//Resets temporary variables.
+/*
+ * Resets temporary variables.
+ */
 void resetTempVars(){
 
     cyclesDetected = 0.0;
@@ -212,7 +232,12 @@ void resetTempVars(){
     STATE = NONE;
 }
 
-//Sends current information to Putty.
+/*
+ * Sends current information to Putty.
+ *
+ * i - degrees
+ * linearWidth - actual width of object most recently scanned
+ */
 void sendData(int i, float linearWidth) {
     char data[50];
     sprintf(data, "%i,%0.1f,%0.2f,%0.2f", i, irDis, sonarDis, linearWidth);
@@ -227,7 +252,9 @@ void sendData(int i, float linearWidth) {
     uart_sendChar('\n');
 }
 
-//Sends Header information to Putty
+/*
+ * Sends Header information to Putty (only needed for Lab 9)
+ */
 void sendHeader(){
 
     char* header = "Degrees\t\tIR Distance (cm)\tSonar Distance (cm)\tWidth";

@@ -1,5 +1,3 @@
-/**PUTTING IT ALL TOGETHER**/
-
 #include "lcd.h"
 #include <open_interface.h>
 #include <stdbool.h>
@@ -17,10 +15,12 @@
 #include "music.h" //Extra Credit
 #include "control.h"
 
+//PROTOTYPES
 void initialize();
 void wifiStart();
 void power_flash(int on, int color);
 
+//VARIABLES
 bool command = false;
 char feedback;
 
@@ -91,7 +91,9 @@ void main()
 
 }
 
-//Several initialization functions in one
+/**
+ * Several initialization functions in one drawn from different header files
+ */
 void initialize()
 {
     portB_init();
@@ -100,15 +102,19 @@ void initialize()
     uart_init();
 }
 
-//Initialize WiFi
+/**
+ * Initialize WiFi and set password
+ */
 void wifiStart()
 {
     int established = WiFi_start("PrawnStars");
-    timer_waitMillis(10000); //wait 10 sec
+    timer_waitMillis(2000); //wait 2 sec
     WiFi_Check(established);
 }
 
-//Flash the power symbol
+/**
+ * Flash the power symbol
+ */
 void power_flash(int on, int color)
 {
     oi_setLeds(on, 0, color, 255);

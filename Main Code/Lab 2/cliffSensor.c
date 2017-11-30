@@ -1,6 +1,8 @@
 #include "cliffSensor.h"
 
-/**Update cliff sensor variables and check if any are positive*/
+/**
+ * Update cliff sensor variables and check if any are positive
+ */
 char checkAnyCliff(oi_t* sensor_data) {
 
     uint32_t* sensors[4];
@@ -20,7 +22,9 @@ char checkAnyCliff(oi_t* sensor_data) {
     return 0;
 }
 
-/**Boundary check - cliff signals*/
+/**
+ * Update cliff signals and check if any read the boundary color
+ */
 char checkBoundary(oi_t* sensor_data) {
 
     uint16_t signals[4];

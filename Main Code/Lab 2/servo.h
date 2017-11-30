@@ -1,6 +1,3 @@
-#ifndef SERVO_H_
-#define SERVO_H_
-
 #include <stdio.h>
 #include <inc/tm4c123gh6pm.h>
 #include "timer.h"
@@ -13,10 +10,23 @@
 #define CCW_135 27000 //
 #define DEGREE 153
 
-#endif /* SERVO_H_ */
-
+/**
+ * Rotate servo
+ *
+ * pulse - length of pulse
+ */
 void move_servo(int pulse_period);
 
-int setPeriod(int degree);
-
+/**
+ * Alternative rotate servo
+ *
+ * degree - degree the servo should be moved to
+ */
 void move_servo2(int degree);
+
+/**
+ * Set the PWM period
+ *
+ * degree - chooses 0, 45, 90, 135, or 180 degrees to move servo to
+ */
+int setPeriod(int degree);
