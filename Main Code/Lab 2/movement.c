@@ -94,11 +94,12 @@ char checkAll(oi_t *sensor) {
  *
  * sensor - an open interface sensor pointer
  * degrees - how far the bot will turn
+ * speed - how fast to turn
  */
-void turn_ccw(oi_t *sensor, int degrees) {
+void turn_ccw(oi_t *sensor, int degrees, int speed) {
 
     int sum = 0;
-    oi_setWheels(SLOW, -SLOW); // move forward;
+    oi_setWheels(speed, -speed); // move forward;
 
     while (sum < degrees) {
         oi_update(sensor);
@@ -115,11 +116,12 @@ void turn_ccw(oi_t *sensor, int degrees) {
  *
  * sensor - an open interface sensor pointer
  * degrees - how far the bot will turn
+ * speed - how fast to turn
  */
-void turn_cw(oi_t *sensor, int degrees) {
+void turn_cw(oi_t *sensor, int degrees, int speed) {
 
     int sum = degrees;
-    oi_setWheels(-SLOW, SLOW); // move forward;
+    oi_setWheels(-speed, speed); // move forward;
 
     while (sum > 0) {
         oi_update(sensor);
@@ -140,7 +142,7 @@ void turn_cw(oi_t *sensor, int degrees) {
  */
 void move_backward(oi_t *sensor, int centimeters, int spd) {
 
-    int sum = centimeters;
+    int sum = centimeters * 10;
     oi_setWheels(-spd, -spd); // move forward;
 
     while (sum > 0) {

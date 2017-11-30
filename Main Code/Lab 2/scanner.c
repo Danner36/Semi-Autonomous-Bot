@@ -116,12 +116,12 @@ void scan() {
 
             linearWidth = calculateLinearWidth(objectAngle, objectDis);
 
+            //Sends datat to PUTTY
+            sendData(i, objectDis, linearWidth);
+
             //Resets temporary variables.
             resetTempVars();
         }
-
-        //Sends the current most cycles data to Putty.
-        sendData(i, linearWidth);
 
         linearWidth = 0;
     }
@@ -238,9 +238,9 @@ void resetTempVars(){
  * i - degrees
  * linearWidth - actual width of object most recently scanned
  */
-void sendData(int i, float linearWidth) {
+void sendData(int i, float distance, float linearWidth) {
     char data[50];
-    sprintf(data, "%i,%0.1f,%0.2f,%0.2f", i, irDis, sonarDis, linearWidth);
+    sprintf(data, "%i,%0.2f,%0.2f", i, distance, linearWidth);
 
     uart_sendChar('\r');
 

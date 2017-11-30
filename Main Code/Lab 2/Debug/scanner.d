@@ -27,6 +27,11 @@ scanner.obj: ../uart.h
 scanner.obj: ../timer.h
 scanner.obj: ../adc.h
 scanner.obj: ../lcd.h
+scanner.obj: ../sonar.h
+scanner.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+scanner.obj: ../timer.h
+scanner.obj: ../lcd.h
+scanner.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 scanner.obj: ../servo.h
 scanner.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 scanner.obj: ../timer.h
@@ -61,6 +66,11 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h:
 ../timer.h: 
 ../adc.h: 
 ../lcd.h: 
+../sonar.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../timer.h: 
+../lcd.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 ../servo.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 ../timer.h: 

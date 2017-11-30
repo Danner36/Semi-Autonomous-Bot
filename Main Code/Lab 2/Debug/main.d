@@ -34,6 +34,11 @@ main.obj: ../uart.h
 main.obj: ../timer.h
 main.obj: ../adc.h
 main.obj: ../lcd.h
+main.obj: ../sonar.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+main.obj: ../timer.h
+main.obj: ../lcd.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 main.obj: ../servo.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 main.obj: ../timer.h
@@ -49,11 +54,23 @@ main.obj: ../timer.h
 main.obj: ../scanner.h
 main.obj: ../init.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+main.obj: ../sonar.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+main.obj: ../timer.h
+main.obj: ../lcd.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 main.obj: ../uart.h
 main.obj: ../timer.h
 main.obj: ../adc.h
 main.obj: ../lcd.h
+main.obj: ../sonar.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+main.obj: ../timer.h
+main.obj: ../lcd.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 main.obj: ../servo.h
+main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+main.obj: ../timer.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 main.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
@@ -92,6 +109,11 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h:
 ../timer.h: 
 ../adc.h: 
 ../lcd.h: 
+../sonar.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../timer.h: 
+../lcd.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 ../servo.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 ../timer.h: 
@@ -107,11 +129,23 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h:
 ../scanner.h: 
 ../init.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../sonar.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../timer.h: 
+../lcd.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 ../uart.h: 
 ../timer.h: 
 ../adc.h: 
 ../lcd.h: 
+../sonar.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../timer.h: 
+../lcd.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 ../servo.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../timer.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 

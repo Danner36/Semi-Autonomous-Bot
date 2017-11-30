@@ -60,7 +60,7 @@ void resetTempVars();
  * i - degrees
  * linearWidth - actual width of object most recently scanned
  */
-void sendData(int i, float linearWidth);
+void sendData(int i, float distance, float linearWidth);
 
 /*
  * Sends Header information to Putty (only needed for Lab 9)

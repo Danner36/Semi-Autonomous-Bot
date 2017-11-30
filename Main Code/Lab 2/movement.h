@@ -2,8 +2,14 @@
 #include "cliffSensor.h"
 #include "uart.h"
 
-#define SPD 250 //Normal Speed
-#define SLOW 100 //Slow Speed
+//Preset speeds
+
+#define SPD_1 250
+#define SPD_2 200
+#define SPD_3 150
+#define SPD_4 100
+#define SPD_5 50
+#define SPD_6 25
 
 /**
  *
@@ -36,16 +42,18 @@ char checkAll();
  *
  * sensor - an open interface sensor pointer
  * degrees - how far the bot will turn
+ * speed - how fast to turn
  */
-void turn_ccw(oi_t *sensor, int degrees);
+void turn_ccw(oi_t *sensor, int degrees, int speed);
 
 /**
  * Turn clockwise a certain number of degrees slowly
  *
  * sensor - an open interface sensor pointer
  * degrees - how far the bot will turn
+ * speed - how fast to turn
  */
-void turn_cw(oi_t *sensor, int degrees);
+void turn_cw(oi_t *sensor, int degrees, int speed);
 
 /**
  * Move in reverse a certain distance

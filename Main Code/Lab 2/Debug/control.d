@@ -39,6 +39,11 @@ control.obj: ../uart.h
 control.obj: ../timer.h
 control.obj: ../adc.h
 control.obj: ../lcd.h
+control.obj: ../sonar.h
+control.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
+control.obj: ../timer.h
+control.obj: ../lcd.h
+control.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h
 control.obj: ../servo.h
 control.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h
 control.obj: ../timer.h
@@ -85,6 +90,11 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/string.h:
 ../timer.h: 
 ../adc.h: 
 ../lcd.h: 
+../sonar.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
+../timer.h: 
+../lcd.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/math.h: 
 ../servo.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include/stdio.h: 
 ../timer.h: 

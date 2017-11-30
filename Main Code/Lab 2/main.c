@@ -22,7 +22,7 @@ void power_flash(int on, int color);
 
 //VARIABLES
 bool command = false;
-char feedback;
+char feedback = 0;
 
 void main()
 {
@@ -32,7 +32,7 @@ void main()
     oi_init(sensor_data);  ///TURN BOT ON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     initialize();
-    wifiStart(); //Always comment out and reupload after first use
+    //wifiStart(); //Always comment out and reupload after first use
 
     unsigned char input_data;
 
@@ -41,9 +41,12 @@ void main()
 
         input_data = uart_receive();
 
-        lcd_printf("Received: %c", input_data);
+        //Each command also sends a return as a second character which should be ignored
+        if (input_data != '\r') {
+            lcd_printf("Received: %c", input_data);
 
-        feedback = controller_input(input_data, sensor_data);
+            feedback = controller_input(input_data, sensor_data);
+        }
 
         if (feedback == 5) {
             play_songs(0); //Music
