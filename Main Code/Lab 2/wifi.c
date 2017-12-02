@@ -31,7 +31,10 @@
  * @param password a null terminated string to be used as wireless password
  * @return 0 on success, -1 failure
  */
-int WiFi_start() {
+int WiFi_start(char *password) {
+
+    //Initialize UART
+    //uart_init();
 
     //Initialize command pin for WiFi connection
     SYSCTL_RCGCGPIO_R |= BIT1; //Turn on GPIO Port B
@@ -43,7 +46,7 @@ int WiFi_start() {
     timer_waitMillis(1);
 
     //send the start command with password to the wifi
-    uint8_t response = _sendCommand(COMMAND_START, "", strlen("") + 1);
+    uint8_t response = _sendCommand(COMMAND_START, password, strlen(password) + 1);
 
     if(response != RETVAL_SUCCESS) {
         return -1;

@@ -13,7 +13,7 @@
 #include <inc/tm4c123gh6pm.h>
 #include "uart.h"
 
-int WiFi_start();
+int WiFi_start(char *password);
 
 int WiFi_stop();
 

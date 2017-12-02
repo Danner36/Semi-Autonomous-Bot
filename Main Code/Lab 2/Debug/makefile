@@ -11,11 +11,15 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./adc.obj" \
+"./cliffSensor.obj" \
+"./control.obj" \
 "./init.obj" \
 "./lcd.obj" \
 "./main.obj" \
 "./movement.obj" \
+"./music.obj" \
 "./open_interface.obj" \
+"./scanner.obj" \
 "./servo.obj" \
 "./sonar.obj" \
 "./timer.obj" \
@@ -165,8 +169,8 @@ Lab\ 2.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "adc.obj" "init.obj" "lcd.obj" "main.obj" "movement.obj" "open_interface.obj" "servo.obj" "sonar.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
-	-$(RM) "adc.d" "init.d" "lcd.d" "main.d" "movement.d" "open_interface.d" "servo.d" "sonar.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
+	-$(RM) "adc.obj" "cliffSensor.obj" "control.obj" "init.obj" "lcd.obj" "main.obj" "movement.obj" "music.obj" "open_interface.obj" "scanner.obj" "servo.obj" "sonar.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
+	-$(RM) "adc.d" "cliffSensor.d" "control.d" "init.d" "lcd.d" "main.d" "movement.d" "music.d" "open_interface.d" "scanner.d" "servo.d" "sonar.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

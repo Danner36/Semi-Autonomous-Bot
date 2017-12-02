@@ -1,0 +1,3 @@
+#include <stdio.h>
+
+void move_forward(oi_t *sensor, int centimeters);
