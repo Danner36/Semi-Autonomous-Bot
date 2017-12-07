@@ -1,0 +1,702 @@
+### IMPORT STATEMENTS ###
+
+
+from __future__ import print_function
+from inputs import get_gamepad
+from IPython.display import clear_output
+from wireless import Wireless
+from time import sleep
+from subprocess import Popen, STDOUT, PIPE, DEVNULL
+import pywinauto
+from pywinauto.application import Application
+from pywinauto.win32functions import SetForegroundWindow
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+
+
+### GLOBAL VARIABLES ###
+
+
+
+#Used to tell if the current button data set is different 
+#   than the last.
+buttonFlag = 0
+
+#Xbox 1 controller buttons. Turns True when
+#   pressed and false otherwise.
+A_button = False
+B_button = False
+X_button = False
+Y_button = False
+TR_button = False
+BACK_button = False
+W_button = False
+
+#Status of WiFi connection.
+WiFi_Status = False
+
+#Network the GUI is connected to.
+WiFi_Network = ""
+
+#WiFi object.
+Network = 0
+
+#Putty application instance.
+Putty = 0
+
+#Error # recieved from the Bot.
+Error_State = 0
+
+#Array to hold the values for the graph
+Scan_Data = []
+
+#Counter used in the data collection.
+Line_Counter = 0
+
+#Signals the current scan resulted in zero objects.
+Zero_Flag = 0
+
+
+
+### FUCNTIONS ###
+
+
+
+#Cycles through the objects data to check if a button has been pressed.
+def checkButton():
+    
+    #Defines Global Variables. Does not Declare
+    global buttonFlag
+    global A_button
+    global B_button
+    global X_button
+    global Y_button
+    global TR_button
+    global BACK_button
+    global W_button
+    
+    #Gathers the current information from the Xbox 1 Controller.
+    events = get_gamepad()
+    
+    A_button = False
+    B_button = False
+    X_button = False
+    Y_button = False
+    TR_button = False
+    BACK_button = False
+    W_button = False
+    
+    #Cycles through the objects data to check for desired 
+    #   button presses.
+    for event in events:
+        
+        #print(event.code, event.state)
+        
+        #Checks if button 'Y' was pressed.
+        if((event.code == "BTN_NORTH") and (event.state == 1)):
+            #print(event.code, event.state)
+            Y_button = True
+            buttonFlag = 1
+
+        #Checks if button 'B' was pressed.
+        elif((event.code == "BTN_EAST") and (event.state == 1)):
+            #print(event.code, event.state)
+            B_button = True
+            buttonFlag = 1
+
+        #Checks if button 'A' was pressed.
+        elif((event.code == "BTN_SOUTH") and (event.state == 1)):
+            #print(event.code, event.state)
+            A_button = True
+            buttonFlag = 1
+
+        #Checks if button 'X' was pressed.
+        elif((event.code == "BTN_WEST") and (event.state == 1)):
+            #print(event.code, event.state)
+            X_button = True
+            buttonFlag = 1
+            
+        #Checks if Right Trigger was pressed.
+        elif((event.code == "BTN_TR") and (event.state == 1)):
+            #print(event.code, event.state)
+            TR_button = True
+            buttonFlag = 1
+        
+        #Checks if down arrow was pressed.
+        elif((event.code == "ABS_HAT0Y") and (event.state == 1)):
+            #print(event.code, event.state)
+            BACK_button = True
+            buttonFlag = 1
+        
+        #Checks if Left Trigger was pressed.
+        elif((event.code == "BTN_TL") and (event.state == 1)):
+            #print(event.code, event.state)
+            W_button = True
+            buttonFlag = 1
+            
+        else:
+            buttonFlag = 0
+
+#Walks the user through the WiFi connection process.
+def WiFi_Setup():
+    
+    #Grants access to the global variables.
+    global buttonFlag
+    global A_button
+    global WiFi_Network
+    global WiFi_Status
+    
+    #Prints out the intial wifi menu and its option prompts.
+    print('\033[1m' + "-------------------WiFi MENU--------------------" + '\033[0m')
+    print("|")
+    print("| Enter Bot Number : ")
+    
+    #Reads in the user input in the form of an integer.
+    Bot_Number = int(input())
+    WiFi_Name = str(""""cyBOT """ +str(Bot_Number) +str('"'))
+    
+    #Passes the user's desired wifi network to get connected.
+    connect_to_network(WiFi_Name)
+    
+    #Updates the status of the wifi connection.
+    WiFi_Network = WiFi_Name
+    WiFi_Status = True
+    
+    #Pints out the second half of the wifi menu. Either exits menu or reprompts for a new network.
+    print("| WiFi Connected to :" + str(WiFi_Name))
+    print('\033[1m' + "----------------------------------------------------" + '\033[0m')
+    print("|")
+    print("| Press A to Continute")
+    print("|")
+    print('\033[1m' + "----------------------------------------------------" + '\033[0m')
+    
+    #Waits until user selects option.
+    while(buttonFlag == 0):
+        
+        #Checks for a button press.
+        checkButton()
+        
+        #Continues past the Wifi menu.
+        if(A_button):
+            
+            #Clears the output terminal.
+            clear_output()
+            
+            #Resets flags.
+            A_button = False
+            buttonFlag = 0
+            break
+            
+        #Discards all other buttons.
+        else:
+            buttonFlag = 0
+        
+            
+            
+#Connects the the desired WiFi network.         
+def connect_to_network(name):
+    
+    #Grants access to global variables.
+    global Network
+    global Putty
+    
+    #Uses the passed in string and the command line to connect to the wifi network.
+    Network = Popen('netsh wlan connect ' + str(name), shell=True, stdout=PIPE, stderr=STDOUT, stdin=PIPE)
+    
+    #Sends password via command line to the robot.
+    password = "PrawnStars"
+    Network.stdin.write(password.encode('utf-8'))
+    Network.stdin.write(b"\n")
+    
+    #Stalls the GUI for 2 seconds to allow the wifi to establish a connection before opening putty.
+    sleep(2)
+    
+    #Opens the putty terminal and automatically connects to the robot.
+    Putty = Application(backend="uia").start('putty.exe -load WiFi')
+    
+
+        
+        
+#Sends out character to BOT via WiFi.
+def WiFi_Send(Action):
+    
+    #Grants access to the global variables.
+    global Network
+    
+    #Clears the output terminal.
+    clear_output()
+    
+    #Prints out the data being sent via wifi.
+    print("|-----------------------------------------------")
+    print("|")
+    print("| Sending: " + str(Action))
+    print("|")
+    
+    #Checks the current desired action and sends it corresponding encoding.
+    if(Action == "SCAN"):
+        pywinauto.keyboard.SendKeys('{s}')
+        pywinauto.keyboard.SendKeys('{ENTER}')
+    
+    #Checks the current desired action and sends it corresponding encoding.
+    elif(Action == "MOVE FORWARD"):
+        pywinauto.keyboard.SendKeys('{w}')
+        pywinauto.keyboard.SendKeys('{ENTER}')
+        
+    #Checks the current desired action and sends it corresponding encoding.
+    elif(Action == "TURN LEFT"):
+        pywinauto.keyboard.SendKeys('{a}')
+        pywinauto.keyboard.SendKeys('{ENTER}')
+    
+    #Checks the current desired action and sends it corresponding encoding.
+    elif(Action == "TURN RIGHT"):
+        pywinauto.keyboard.SendKeys('{d}')
+        pywinauto.keyboard.SendKeys('{ENTER}')
+    
+    #Checks the current desired action and sends it corresponding encoding.
+    elif(Action == "MOVE BACKWARD"):
+        pywinauto.keyboard.SendKeys('{x}')
+        pywinauto.keyboard.SendKeys('{ENTER}')
+    
+    #Checks the current desired action and sends it corresponding encoding.
+    elif(Action == "FINISH"):
+        pywinauto.keyboard.SendKeys('{q}')
+        pywinauto.keyboard.SendKeys('{ENTER}')
+    
+    #Rests the global action variable to prevent duplicates and future issues.
+    Action = ""
+    
+
+
+#Receives data via wifi from BOT.
+def WiFi_Receive_Scan(Action):
+    
+    #Grants access to global variables.
+    global Error_State
+    global Scan_Data
+    global Line_Counter
+    global Zero_Flag
+    
+    #While true, reads in information. Triggered by the character '$'. After the first it records, after the second it stops.
+    Parse_Signal = False
+    
+    #Status variable that is dependant on the above variable.
+    Current_Reading = False
+    
+    #Integer value used to signal the beginning and end of the streaming data.
+    first_Dollar = 0
+    second_Dollar = 0
+    
+    #Opens the file which putty logs its incoming and outgoing text to.
+    file = open("input.txt", "r")
+    
+    #Used as a counter to skip over already parsed lines in Putty's log file.
+    Local_Counter = 0
+    
+    #Cycles through the lines in the text file from putty.
+    for line in file:
+        
+        #Cycles passed already seen lines until it gets to new information.
+        if((Local_Counter < Line_Counter) and (Current_Reading == False)):
+            
+            #Increments counter.
+            Local_Counter += 1
+        
+        #If this triggers, it has reached new information in the text log file.
+        else:
+            #Updates the status parsing.
+            Current_Reading = True
+            
+            #Increments overall line that have been read in from the text file. This is used to tell how many 
+            #   lines need to be skipped to reach new information on the next program cycle.
+            Line_Counter += 1
+            
+            #Essentially skips all blank lines in the text file.
+            if not line.strip():
+                #this does nothing but python likes its indentation so we need to have something below.
+                junk = 0 
+                
+            #The line is not blank.
+            else:
+                #Checks for the last encoding identifier '$'. 
+                if(('$' in line) and (Parse_Signal == True)):
+                    
+                    #Resets varaibles for next cycle.
+                    Parse_Signal = False
+                    #print("Found Last $")
+                    
+                    #Used to account for if there is no data recieved.
+                    second_Dollar = Line_Counter
+                    
+                    #Debugging info.
+                    #print(first_Dollar)
+                    #print(second_Dollar)
+                    #Checks for a data stream with no data. (Two '$' symbols back to back)
+                    if((second_Dollar - first_Dollar) == 3):
+                        #print("no data")
+                        #Resets varaibles.
+                        Zero_Flag = 1
+                        break
+                    
+                    #Closes the text file.
+                    file.close()
+                    break
+
+                #Checks for if the parsing tool is currently pulling information.
+                if(Parse_Signal):
+
+                    #print(line)
+
+                    #The following lines decode values that were parsed out of the data stream to their own
+                    #   variables.
+                    degree, iR, LW = line.strip().split(",")
+                    
+                    #Converts string to float for the degree of the object.
+                    Radians = float(degree)
+                    
+                    #Converts string to float for the distance of the object.
+                    AvgDis = float(iR)
+                    
+                    #Converts string to float for the linear width of the object.
+                    Linear_Width = float(LW)
+
+                    #Converts degree values to radians.
+                    Radians = math.radians(Radians)
+                    
+                    #Converts the linear width of the objects to a more noticable size. (Graphing purposes)
+                    #Small object.
+                    if(Linear_Width < 5):
+                        Linear_Width = Linear_Width + 200
+                    
+                    #Large object.
+                    elif(Linear_Width > 5):
+                        Linear_Width = Linear_Width + 1500
+                    
+                    #Appends the newly converted values to the list (ARRAY LIST) variable.
+                    Scan_Data.append(( Radians, AvgDis, Linear_Width ))
+                
+                #Checks for the first '$' in the data stream.
+                elif('$' in line):
+                    
+                    #Updates corresponding variables.
+                    Parse_Signal = True
+                    #print("Found First $")
+                    
+                    #Used in the senario where there is no data in the data stream.
+                    first_Dollar = Line_Counter
+                    
+
+    #Closes the text file. This allows putty to modify the file before we reopen it on the next cycle.
+    file.close()
+            
+            
+#Receives data via wifi from BOT.
+def WiFi_Receive_Char(Action):
+    
+    #Grants access to the global variables.
+    global Error_State
+    
+    #Opens Putty's text file.
+    file = open("input.txt", "r")
+
+    #Cycles through the lines in the text file.
+    for line in file:
+        
+        #Updates to the latest state.
+        Error_State = line
+        
+    #Closes the text file.
+    file.close()
+        
+
+    
+    
+#MAIN LOOP 
+#   Passively watches the COM ports for information.
+#   When detected, reads in the event and its attributes.
+def main():
+    
+    #Defines Global Variables. Does not Declare, buts grants access to the global vars.
+    global buttonFlag
+    global A_button
+    global B_button
+    global X_button
+    global Y_button
+    global TR_button
+    global BACK_button
+    global W_button
+    
+    global WiFi_Status
+    global WiFi_Network
+    global My_Turn
+    
+    global Error_State
+    global Scan_Data
+    global Zero_Flag
+    
+    
+    
+    
+    #RUNS THROUGH SETUP MENU.
+    
+    
+    
+    menuComplete = False
+    
+    #Program loop. Loops until the user confirms they have setup and choosen their desired settings.
+    while(menuComplete == False):
+        
+        #Prints out the setup menu of the GUI. 
+        print('\033[1m' + "----------------Current Settings----------------" + '\033[0m')
+        print("|")
+        print("| Connection Status: " + '\033[1m' +  str(WiFi_Status) + '\033[0m')
+        print("| Network Name: " + '\033[1m' +  str(WiFi_Network) + '\033[0m')
+        print("|")
+        print('\033[1m' + "------------------------------------------------" + '\033[0m')
+        print("|")
+        print("| Press Y to setup WiFi.")
+        print("| Press A to confirm settings.")
+        print("| ")
+        print('\033[1m' + "------------------------------------------------" + '\033[0m')
+        
+        #Waits until user selects option.
+        while(buttonFlag == 0):
+            
+            #Checks for button press.
+            checkButton()
+        
+        #Resets the Status Flag.
+        buttonFlag = 0
+        
+        #Clears the output terminal.
+        clear_output()
+        
+        #Checks buttons
+        if(Y_button):
+            
+            #Prompts the wifi setup process.
+            WiFi_Setup()
+            Y_button = False
+            
+        #Checks for the A button.
+        elif(A_button):
+            
+            #Updates corresponding variables.
+            A_button = False
+            menuComplete = True
+            
+        #Ignores all other button pressed.
+        else:
+            buttonFlag = 0
+        
+        #Clears the output terminal.
+        clear_output()
+        
+    
+    
+    
+    #STARTS WIFI COMMUNICATION WITH BOT.
+    
+    
+    
+    programCounter = 0
+    
+    programComplete = False
+    Action = ""
+    
+    #This is the main loop of the program. 
+    while(programComplete == False):    
+            
+        #Clears the output terminal.
+        clear_output()
+        
+        #Checks for if the previous action was to scan.
+        if(Action == "SCAN"):
+            
+            #Pauses python to give time for robot to scan and send back info.
+            sleep(7)
+            
+            #Reads in the data stream from putty.
+            WiFi_Receive_Scan(Action)
+        
+            print('\033[1m' + "--------------------------------cyBOT VISION------------------------------" + '\033[0m')
+            
+            #Checks for zero flag. This is used to signal that the scan data was empty. If so, it skips the graphing process.
+            if(Zero_Flag == 1):
+                Zero_Flag = 0
+            
+            #The scan data was not empty. Proceeds with graph.
+            else:
+                #Extracts the variables from the list.
+                theta, r, LW = zip(*Scan_Data)
+
+                #print(Scan_Data)
+                #print("Theta values: " + str(theta))
+                #print("Dsitance values: " + str(r))
+                #print("Linear Width values: " + str(LW))
+
+                #Colors assignment.
+                colors = theta
+                
+                #The next 5 lines handle the plotting and graphing of the scan data.
+                fig = plt.figure()
+                fig.set_figheight(9)
+                fig.set_figwidth(9)
+                ax = fig.add_subplot(111, polar=True)
+                c = ax.scatter(theta, r, c=colors, s=LW, cmap='hsv', alpha=0.75)
+                
+                #Flashes the graph to the terminal.
+                plt.show()
+            
+            #Resets the scan data list.
+            Scan_Data = []
+        
+        #Prints out the data menu. Shows the bots current status and its performable actions based on that data.
+        print('\033[1m' + "----------------------------"+ str(WiFi_Network) + " INFO-------------------------------" + '\033[0m')
+        print("|")
+        print("| Error State")
+        print("| (Clear : 0) (Left Bumper : 1) (Right Bumper : 2) (Cliff : 3) (Edge :4)")
+        print("| Current State: " + '\033[1m' + str(Error_State) + '\033[0m')
+        print("|")
+        print('\033[1m' + "------------------------------MOVEMENT MENU-------------------------------" + '\033[0m')
+        print("|")
+        print("| Right Trigger: SCAN")
+        print("| Y Button: FORWARD")
+        print("| Down Arrow: MOVE BACK")
+        print("| X Button: TURN LEFT")
+        print("| B Button: TURN RIGHT")
+        print("| Left Trigger: FINISH")
+        print("|")
+        
+        #Resets variables.
+        actionComplete = False
+        Action = ""
+        
+        #Prompts the user to enter a desired action to send to the bot.
+        while(actionComplete == False):
+            
+            #Prints its portion of the menu.
+            print("| Enter action:")
+            
+            #Waits until user selects option.
+            while(buttonFlag == 0):
+                
+                #Checks for button press.
+                checkButton()
+                
+                #Right Top trigger.
+                if(TR_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = "SCAN"
+                    buttonFlag = 0
+                    TR_button = False
+                    break
+                    
+                #X Button.
+                elif(X_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = "TURN LEFT"
+                    buttonFlag = 0
+                    X_button = False
+                    break
+                    
+                #Y Button.
+                elif(Y_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = "MOVE FORWARD"
+                    buttonFlag = 0
+                    Y_button = False
+                    break
+                    
+                #B Button.
+                elif(B_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = "TURN RIGHT"
+                    buttonFlag = 0
+                    B_button = False
+                    break
+                    
+                #Down arrow.
+                elif(BACK_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = "MOVE BACKWARD"
+                    buttonFlag = 0
+                    break
+                    
+                #Left Top Trigger.
+                elif(W_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = "FINISH"
+                    buttonFlag = 0
+                    break
+                    
+                #A button.
+                elif(A_button):
+                    
+                    #Updates corresponding varaibles.
+                    Action = ""
+                    buttonFlag = 0
+                    break
+                    
+                #Discards all other buttons.
+                else:
+                    
+                    #Updates corresponding varaibles.
+                    buttonFlag = 0
+                    
+            #Prints the rest of the action menu. Prompts user for confirmation.
+            print("| Action to perform: " + str(Action))
+            print("|")
+            print('\033[1m' + "---------------------------------------------------------------------------" + '\033[0m')
+            print("|")
+            print("| Press A to confirm and send.")
+            print("| Press B to set new action.")
+        
+            #Waits until user selects option.
+            while(buttonFlag == 0):
+                
+                #Checks for button press.
+                checkButton()
+                
+                #A Button.
+                if(A_button):
+                    
+                    #Updates corresponding variables.
+                    A_button = False
+                    buttonFlag = 0
+                    
+                    #Signals the end of the action menu.
+                    actionComplete = True
+                    
+                    #Sends action to robot.
+                    WiFi_Send(Action)
+                    break
+                    
+                #B Button.
+                elif(B_button):
+                    
+                    #Updates corresponding variables.
+                    buttonFlag = 0
+                    B_button = 0
+                    break
+                else:
+                    
+                    #Updates corresponding variables.
+                    buttonFlag = 0
+    
+        #If scan was not the previously choosen action, it reads in the robots single character response which
+        #   signals its current error state.
+        WiFi_Receive_Char(Action)
+    
+
+#This waits the for the controller is initalize and send its
+#   call in value. (Waits for it to start)
+if __name__ == "__main__":
+   main()
