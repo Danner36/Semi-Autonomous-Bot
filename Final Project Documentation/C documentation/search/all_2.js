@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['batterycapacity',['batteryCapacity',['../structoi__t.html#a6c31f8965f8949918c5eaf0d1bc17be0',1,'oi_t']]],
+  ['batterycharge',['batteryCharge',['../structoi__t.html#a59d673457b0f4a86be6d9a2e251994d8',1,'oi_t']]],
+  ['batterycurrent',['batteryCurrent',['../structoi__t.html#a7f441cdd462ae2c8ea161e4f70ecc30e',1,'oi_t']]],
+  ['batterytemperature',['batteryTemperature',['../structoi__t.html#aba3741485fbda69cadc30882c38d6fd8',1,'oi_t']]],
+  ['batteryvoltage',['batteryVoltage',['../structoi__t.html#a2db6c9307ca3110690cdb512313d7891',1,'oi_t']]],
+  ['bit0',['BIT0',['../lcd_8c.html#ad4d43f8748b542bce39e18790f845ecc',1,'BIT0():&#160;lcd.c'],['../timer_8h.html#ad4d43f8748b542bce39e18790f845ecc',1,'BIT0():&#160;timer.h']]],
+  ['bit1',['BIT1',['../lcd_8c.html#a601923eba46784638244c1ebf2622a2a',1,'BIT1():&#160;lcd.c'],['../timer_8h.html#a601923eba46784638244c1ebf2622a2a',1,'BIT1():&#160;timer.h']]],
+  ['bit2',['BIT2',['../lcd_8c.html#a9c9560bccccb00174801c728f1ed1399',1,'BIT2():&#160;lcd.c'],['../timer_8h.html#a9c9560bccccb00174801c728f1ed1399',1,'BIT2():&#160;timer.h']]],
+  ['bit3',['BIT3',['../lcd_8c.html#a8e44574a8a8becc885b05f3bc367ef6a',1,'BIT3():&#160;lcd.c'],['../timer_8h.html#a8e44574a8a8becc885b05f3bc367ef6a',1,'BIT3():&#160;timer.h']]],
+  ['bit4',['BIT4',['../lcd_8c.html#aa731e0b6cf75f4e637ee88959315f5e4',1,'BIT4():&#160;lcd.c'],['../timer_8h.html#aa731e0b6cf75f4e637ee88959315f5e4',1,'BIT4():&#160;timer.h']]],
+  ['bit5',['BIT5',['../lcd_8c.html#ae692bc3df48028ceb1ddc2534a993bb8',1,'BIT5():&#160;lcd.c'],['../timer_8h.html#ae692bc3df48028ceb1ddc2534a993bb8',1,'BIT5():&#160;timer.h']]],
+  ['bit6',['BIT6',['../lcd_8c.html#acc2d074401e2b6322ee8f03476c24677',1,'BIT6():&#160;lcd.c'],['../timer_8h.html#acc2d074401e2b6322ee8f03476c24677',1,'BIT6():&#160;timer.h']]],
+  ['bit7',['BIT7',['../lcd_8c.html#aa6b8f3261ae9e2e1043380c192f7b5f0',1,'BIT7():&#160;lcd.c'],['../timer_8h.html#aa6b8f3261ae9e2e1043380c192f7b5f0',1,'BIT7():&#160;timer.h']]],
+  ['bound_5fmax',['BOUND_MAX',['../cliff_sensor_8h.html#a03f6d30844d2d37fa9a91be0c934ff12',1,'cliffSensor.h']]],
+  ['bound_5fmin',['BOUND_MIN',['../cliff_sensor_8h.html#ac25109a5f0c46dc6b489169f188b7d46',1,'cliffSensor.h']]],
+  ['bumpleft',['bumpLeft',['../structoi__t.html#a824c4a5e7b30099216a347d69a005609',1,'oi_t']]],
+  ['bumpright',['bumpRight',['../structoi__t.html#ab9925fb04fac6873cb9b67f8471aa50d',1,'oi_t']]],
+  ['buttonclean',['buttonClean',['../structoi__t.html#a6f378668473a5cc4eb3ff21211f12df3',1,'oi_t']]],
+  ['buttonclock',['buttonClock',['../structoi__t.html#a42138eef3702b90590423ee2d728faa4',1,'oi_t']]],
+  ['buttonday',['buttonDay',['../structoi__t.html#a5280f5d3fe62e2e77951e40c7a92db71',1,'oi_t']]],
+  ['buttondock',['buttonDock',['../structoi__t.html#a88054d3e0cdc55c5b9a7298bec41a13d',1,'oi_t']]],
+  ['buttonhour',['buttonHour',['../structoi__t.html#a8415545db085823163e91bfb4bd5cb03',1,'oi_t']]],
+  ['buttonminute',['buttonMinute',['../structoi__t.html#a6101a4054af0886a74e816282a545e46',1,'oi_t']]],
+  ['buttonschedule',['buttonSchedule',['../structoi__t.html#a4025e6af4bd31c26feffac4237c87c45',1,'oi_t']]],
+  ['buttonspot',['buttonSpot',['../structoi__t.html#a4cda2dc8b4b56dcea6c994362d211f85',1,'oi_t']]]
+];
